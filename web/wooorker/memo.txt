@@ -1,0 +1,6 @@
+Crawler が認証情報持ってそう
+リダイレクト先に token が付加されるっぽいので覗ければよさそう
+Cloudflare でリクエストログ見てみるかぁ
+REDACTED ！？なんでや
+worker 作って log に表示した、ヨシ
+ctf4b{0p3n_r3d1r3c7_m4k35_70k3n_l34k3d}
