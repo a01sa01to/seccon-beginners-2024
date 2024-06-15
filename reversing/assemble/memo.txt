@@ -1,0 +1,61 @@
+=== 1 ===
+mov rax, 0x123
+
+=== 2 ===
+mov rax, 0x123
+push rax
+
+=== 3 ===
+https://qiita.com/trimscash/items/8fbbdb0135537d69809b#write%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9
+標準出力
+- rax: 1
+- rdi: ファイルディスクリプタ、 stdout = 1
+- rsi: 文字列アドレス
+- rdx: 文字数
+
+mov rax, 1
+mov rdi, 1
+# 文字数
+mov rdx, 6
+# Hello を int.from_bytes(s.encode(), 'little') したやつ
+mov rbx, 0x6f6c6c6548
+push rbx
+mov rsi, rsp
+syscall
+
+=== 4 ===
+入力
+- rax: 0
+- rdi: ファイルディスクリプタ
+- rsi: バッファアドレス
+- rdx: 文字数
+
+ファイルディスクリプタ取得
+- rax: 2
+- rdi: パス
+- rsi: フラグ (readonly: 0)
+
+# fd 取得
+mov rax, 2
+mov rbx, 0
+push rbx
+mov rbx, 0x7478742e67616c66
+push rbx
+mov rdi, rsp
+mov rsi, 0
+syscall
+mov rbx, rax
+# ファイル内容取得
+mov rax, 0
+mov rdi, rbx
+mov rsi, rsp
+mov rdx, 1024
+syscall
+# 表示
+mov rax, 1
+mov rdi, 1
+mov rdx, 53
+mov rsi, rsp
+syscall
+
+ctf4b{gre4t_j0b_y0u_h4ve_m4stered_4ssemb1y_14ngu4ge}
