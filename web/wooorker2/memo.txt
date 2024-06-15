@@ -1,0 +1,11 @@
+お、今度は searchParams から hash に代わってる
+クライアントサイドじゃないと使えないや、どうしよ
+
+あー `/#hoge` を `/foo?hoge` にリダイレクトさせちゃえばいいのか
+
+<script>location.href = `/hoge${window.location.hash.replace('#', '?')}`</script>
+これだけ返すようにして、あとは同じ
+
+ヨシ！
+
+ctf4b{x55_50m371m35_m4k35_w0rk3r_vuln3r4bl3}
